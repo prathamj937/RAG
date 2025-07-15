@@ -26,12 +26,12 @@ prompt = ChatPromptTemplate.from_messages([
     ("user", "{text}")
 ])
 
-model = ChatGroq(model="Gemma-7b-it", groq_api_key=groq_api_key)
+model = ChatGroq(model="gemma2-9b-it", groq_api_key=groq_api_key)
 parser = StrOutputParser()
 
 # LCEL input mapper (RunnableLambda)
-def map_input(input: ChainInput):
-    return {"language": input.language, "text": input.text}
+def map_input(input: dict):
+    return {"language": input["language"], "text": input["text"]}
 
 input_mapper = RunnableLambda(map_input)
 
