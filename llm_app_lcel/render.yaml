@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: groq-fastapi-app
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
+    autoDeploy: true
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false  # will be set manually in Render dashboard
